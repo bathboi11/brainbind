@@ -5,9 +5,16 @@ import { supabase } from '@/lib/supabase';
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
+// This is the ONLY thing needed in Next.js 16+
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 export async function POST(req: Request) {
   const sig = req.headers.get('stripe-signature')!;
-  const body = await req.text();
+  
+  // Get raw body as buffer (Stripe needs this)
+  const buf = await req.arrayBuffer();
+  const body = Buffer.from(buf);
 
   let event;
 
@@ -25,10 +32,3 @@ export async function POST(req: Request) {
 
   return NextResponse.json({ received: true });
 }
-
-// This line is REQUIRED for raw body (Stripe needs it)
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
