@@ -26,6 +26,11 @@ if (status === 'loading') {
 
   return (
     <main className="min-h-screen text-white">
+      <main className="min-h-screen text-white">
+  {/* CANARY: If you see this in the live site, it's the full app! */}
+  <div className="hidden">Full Brainbind Loaded</div>
+  {/* Rest of your existing code... */}
+</main>
       <div className="container mx-auto p-6 max-w-5xl">
         <header className="flex justify-between items-center mb-12">
           <div>
