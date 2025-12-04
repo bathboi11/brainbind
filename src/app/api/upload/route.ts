@@ -2,7 +2,6 @@ import { summarizeWithGemini, transcribeAudio } from '@/lib/gemini';
 import { NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { extractTextFromImage } from '@/lib/ocr';
-import { summarizeWithGemini } from '@/lib/gemini';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 
