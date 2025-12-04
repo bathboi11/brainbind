@@ -1,20 +1,19 @@
 {
+  "version": 2,
   "buildCommand": "npm run build",
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
+  "framework": "nextjs",
+  "regions": ["pdx1"],
   "routes": [
     { "src": "/(.*)", "dest": "/" }
   ],
   "functions": {
-    "src/app/api/**/*.ts": {
-      "maxDuration": 30
+    "app/api/**/*.ts": {
+      "maxDuration": 60
     }
   },
-  "env": {
-    "NODE_ENV": "production"
+  "build": {
+    "env": {
+      "NEXT_PRIVATE_TARGET": "server"
+    }
   }
 }
