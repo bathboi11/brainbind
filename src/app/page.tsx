@@ -10,7 +10,10 @@ import { Mic, Camera, Sparkles, Lock } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function Home() {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+if (status === 'loading') {
+  return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+}
   const [notes, setNotes] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<any>(null);
