@@ -1,6 +1,8 @@
 // src/app/layout.tsx
-import './globals.css';          // ← This line was missing or wrong
+import './globals.css';
 import { Inter } from 'next/font/google';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import Providers from '@/components/providers';
 import { Toaster } from 'react-hot-toast';
 
@@ -16,10 +18,12 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession(authOptions);  // ← This line
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <Providers>
+        <Providers session={session}>   {/* ← Pass session here */}
           {children}
           <Toaster position="top-center" />
         </Providers>
