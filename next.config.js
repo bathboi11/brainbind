@@ -7,17 +7,12 @@ const withPWA = require('@ducanh2912/next-pwa').default({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverActions: true,
-  },
+  // Server Actions enabled by default in Next.js 14 — no experimental flag needed
+  // Turbopack not supported in 14 — no config needed
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
-    // Empty webpack hook to satisfy next-pwa (no actual changes needed)
+    // Empty hook for next-pwa compatibility
     return config;
   },
-  // Force Webpack (disable Turbopack) — fixes the conflict
-  transpilePackages: [],
-  // Silences the warning by providing empty Turbopack config
-  turbopack: {},
 };
 
 module.exports = withPWA(nextConfig);
