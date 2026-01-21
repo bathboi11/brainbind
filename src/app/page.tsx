@@ -1,3 +1,4 @@
+// src/app/page.tsx
 'use client';
 
 import { useState, useRef } from 'react';
@@ -12,7 +13,7 @@ import { NotePDF } from '@/components/NotePDF';
 export default function Home() {
   const { data: session, status } = useSession();
   if (status === 'loading') {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+    return <div className="flex items-center justify-center min-h-screen text-white">Loading your Brainbind...</div>;
   }
 
   const [notes, setNotes] = useState<any[]>([]);
@@ -27,7 +28,7 @@ export default function Home() {
     const chunks: Blob[] = [];
 
     mediaRecorder.current.ondataavailable = (e) => chunks.push(e.data);
-  mediaRecorder.current.onstop = async () => {
+    mediaRecorder.current.onstop = async () => {
       const blob = new Blob(chunks, { type: 'audio/webm' });
       const base64 = await blobToBase64(blob);
       await processFile(base64, 'audio');
