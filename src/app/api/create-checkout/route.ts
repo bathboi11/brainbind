@@ -11,5 +11,5 @@ export async function POST(req: Request) {
     cancel_url: `${process.env.NEXTAUTH_URL}/?canceled=true`,
     metadata: { user_id: userId },
   });
-  return NextResponse.json({ url: (await session).url });
+  return NextResponse.json({ url: session.url });
 }
