@@ -1,5 +1,6 @@
 'use client';
-import { Document, Page, Text, View, StyleSheet, PDFDownloadLink, Font } from '@react-pdf/renderer';
+
+import { Document, Page, Text, View, StyleSheet, Font } from '@react-pdf/renderer';
 import { format } from 'date-fns';
 
 Font.register({
